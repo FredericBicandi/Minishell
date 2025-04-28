@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:06:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2025/04/17 16:20:01 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2025/04/28 19:22:10 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*get_env_value(t_env *env, char *key)
 
 void	init_envp(t_env **new_node)
 {
+	(*new_node)->flag = FALSE;
 	(*new_node)->exit_code = 0;
 	(*new_node)->expanding = FALSE;
 	(*new_node)->here_doc = FALSE;

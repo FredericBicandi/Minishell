@@ -6,7 +6,7 @@
 #    By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:28:36 by fbicandy          #+#    #+#              #
-#    Updated: 2025/04/16 15:39:56 by fbicandy         ###   ########.fr        #
+#    Updated: 2025/04/28 23:28:04 by fbicandy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,7 @@ ft_strcmp.c\
 ft_strcspn.c\
 ft_strdup.c\
 ft_strjoin.c\
-ft_strlcpy.c\
 ft_strlen.c\
-ft_strnstr.c\
 ft_strsplit.c\
 ft_strtrim.c\
 ft_struct_lst.c\

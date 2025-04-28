@@ -6,38 +6,28 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:48:04 by fbicandy          #+#    #+#             */
-/*   Updated: 2025/04/18 00:19:31 by fbicandy         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:28:38 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <ctype.h>
 # include <curses.h>
-# include <dirent.h>
-# include <errno.h>
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
-# include <stdbool.h>
-# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <term.h>
-# include <termios.h>
 # include <unistd.h>
 
 extern int			g_signal;
 
-# define PROMPT "\001\e[33m\00242-minishell\001\e[32m\002  "
-# define ARROW "➜\001\e[0m\002"
-# define PPOPROMPT "\001\e[33m\00242-minishell\001\e[32m\002  ➜\001\e[0m\002 "
+# define PROMPT "\001\e[33m\00242-minishell\001\e[32m\002  ➜\001\e[0m\002 "
 
 typedef struct s_fd
 {
@@ -71,6 +61,7 @@ typedef struct s_env
 	bool			exit_status;
 	bool			expanding;
 	bool			here_doc;
+	bool			flag;
 	struct s_env	*next;
 }					t_env;
 
@@ -146,10 +137,6 @@ void				restore_original_fds(int original_stdin,
 int					save_original_fds(int *original_stdin, int *original_stdout,
 						t_env **env);
 
-// Get_next_line Folder
-// get_next_line.c
-char				*get_next_line(int fd);
-
 // Libft Folder
 
 // ft_ atoi.c
@@ -180,15 +167,9 @@ char				*ft_strdup(char *s);
 char				*ft_strndup(const char *s, size_t n);
 // ft_strjoin.c
 char				*ft_strjoin(char *s1, char *s2);
-char				*ft_strjoin_extra(char *s1, char *s2, int len_extra);
 char				*ft_strjoin_free(char *s1, char *s2);
-// ft_strlcpy.c
-size_t				ft_strlcpy(char *dst, char *src, size_t size);
 // ft_strlen.c
 int					ft_strlen(char *str);
-// ft_strnstr.c
-char				*ft_strnstr(const char *big, const char *little,
-						size_t len);
 // ft_split.c
 char				**ft_split(char *s, char c);
 char				**ft_shell_split(char *s, char c, t_env *env);
@@ -208,7 +189,6 @@ void				struct_update_flags(t_cmd **cmd, char *flag,
 void				struct_update_args(t_cmd **cmd, char *command);
 void				struct_update_redirection(t_cmd **cmd, int type,
 						char *filename);
-void				struct_print_list(t_cmd *cmd);
 // ft_word_count.c
 size_t				ft_wordcount(char *s, char c);
 

@@ -6,7 +6,7 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:07:17 by amokdad           #+#    #+#             */
-/*   Updated: 2025/04/17 20:13:56 by fbicandy         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:30:12 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	display(t_cmd **cmd)
 	int	i;
 	int	j;
 
+	if((*cmd)->arg == NULL)
+	{
+		printf("\n");
+		return ;
+	}
 	i = -1;
 	while ((*cmd)->arg[++i] != NULL)
 	{

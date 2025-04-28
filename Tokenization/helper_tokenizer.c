@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_tokenizer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 00:00:19 by fbicandy          #+#    #+#             */
-/*   Updated: 2025/04/18 20:15:31 by fbicandy         ###   ########.fr       */
+/*   Updated: 2025/04/28 19:23:16 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ char	*dequotencpy(int start, int end, char *s, t_env **env)
 			(*env)->quote_indentifier = TRUE;
 			in_quote = s[start + i];
 		}
-		else
+	else
 			dest[j++] = s[start + i];
 	}
-	if (in_quote != '\0')
+	if (in_quote != '\0' && !(*env)->flag)
 		ft_error(env, "parse error unmatched quotes`", 2, FALSE);
 	return (dest[j] = '\0', dest);
 }

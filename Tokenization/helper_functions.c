@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 22:42:02 by fbicandy          #+#    #+#             */
-/*   Updated: 2025/04/18 00:07:12 by fbicandy         ###   ########.fr       */
+/*   Updated: 2025/04/28 19:22:37 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ int	copy_flag(t_cmd **cmd, int i, char *prompt, t_env *env)
 
 	flag = skip_to_c(prompt, ' ', env);
 	len = flag - prompt;
+	env->flag=TRUE;
 	flag = dequotencpy(i, len, prompt, &env);
+	env->flag=FALSE;
 	struct_update_flags(cmd, flag, (*cmd)->flag);
 	return (len);
 }

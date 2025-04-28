@@ -6,23 +6,23 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:53:11 by fbicandy          #+#    #+#             */
-/*   Updated: 2025/04/18 19:58:08 by fbicandy         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:22:38 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*rediretions_token(t_cmd **cmd, char *prompt, t_env *env)
+char *rediretions_token(t_cmd **cmd, char *prompt, t_env *env)
 {
-	int	len;
-	int	type;
+	int len;
+	int type;
 
 	while (*prompt != '\0')
 	{
 		type = redirections(*prompt, *(prompt + 1));
 		if (type < 0)
 			return (ft_error(&env, "error unmatched redirections", 130, false),
-				NULL);
+					NULL);
 		if (type == 4 || type == 3)
 			prompt += 2;
 		else
@@ -45,9 +45,9 @@ char	*rediretions_token(t_cmd **cmd, char *prompt, t_env *env)
 	else check if aynithing persist in prompt
 
 */
-char	*args_token(t_cmd **cmd, int i, char *prompt, t_env *env)
+char *args_token(t_cmd **cmd, int i, char *prompt, t_env *env)
 {
-	int	n;
+	int n;
 
 	n = copy_args(cmd, prompt, env);
 	if (n > 0)
@@ -70,19 +70,19 @@ char	*args_token(t_cmd **cmd, int i, char *prompt, t_env *env)
 		ELSE:then
 			copy all the rest as args
 */
-char	*flags_token(t_cmd **cmd, char *prompt, t_env *env)
+char *flags_token(t_cmd **cmd, char *prompt, t_env *env)
 {
-	int		i;
-	char	*new_prompt;
+	int i;
+	char *new_prompt;
 
 	while (*prompt != '\0')
 	{
 		prompt = skip_spaces(prompt);
 		i = 0;
-		if (*prompt == '\0')
-			break ;
+		if (*prompt == '\0' || (ft_strncmp((*cmd)->command, "echo", 1) == 0 && (*cmd)->flag != NULL))
+			break;
 		if (redirections(*prompt, *(prompt + 1)))
-			break ;
+			break;
 		if (prompt[i] == '-')
 			prompt += copy_flag(cmd, i + 1, prompt, env);
 		else if (isquote(prompt[i]) && prompt[i + 1] == '-')
@@ -91,7 +91,7 @@ char	*flags_token(t_cmd **cmd, char *prompt, t_env *env)
 		{
 			new_prompt = args_token(cmd, i, prompt, env);
 			if (!new_prompt)
-				break ;
+				break;
 			prompt = new_prompt;
 		}
 	}
@@ -109,10 +109,10 @@ char	*flags_token(t_cmd **cmd, char *prompt, t_env *env)
 		-dequote the result and copy it
 	@RETURN  -Flag1 -Flag2 arg1 arg2 -Flag3 > file1 file2 file3
 */
-char	*command_token(t_cmd **cmd, char *prompt, t_env **env)
+char *command_token(t_cmd **cmd, char *prompt, t_env **env)
 {
-	char	*command;
-	size_t	len;
+	char *command;
+	size_t len;
 
 	len = 0;
 	prompt = skip_spaces(prompt);
@@ -131,10 +131,10 @@ char	*command_token(t_cmd **cmd, char *prompt, t_env **env)
 	return (prompt + len);
 }
 
-t_cmd	*tokenizing(char *prompt, t_env *env)
+t_cmd *tokenizing(char *prompt, t_env *env)
 {
-	t_cmd	*new_cmd;
-	int		type;
+	t_cmd *new_cmd;
+	int type;
 
 	new_cmd = NULL;
 	if (*prompt == '\0' || prompt == NULL)

@@ -6,7 +6,7 @@
 /*   By: fbicandy <fbicandy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 16:51:28 by fbicandy          #+#    #+#             */
-/*   Updated: 2025/04/18 20:17:14 by fbicandy         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:25:28 by fbicandy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	start_engine(t_env *env)
 	while (1)
 	{
 		env->exit_status = 0;
-		input = readline(PPOPROMPT);
+		input = readline(PROMPT);
 		if (input == NULL)
 			handle_eof(&env);
 		if (g_signal == 130)
@@ -105,7 +105,10 @@ void	start_engine(t_env *env)
 		cmd = parsing(input, &env);
 		free(input);
 		if (cmd && (env->exit_status != 1 && g_signal != 130))
+		{
+			// struct_print_list(cmd);
 			executing(&cmd, &env);
+		}
 		struct_free_cmd(cmd);
 	}
 }
