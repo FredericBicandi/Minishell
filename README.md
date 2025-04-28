@@ -10,7 +10,7 @@ Started: 24/09/2024.
 
 Finished: 18/04/2025.
 
-Grade: pending...
+Grade: 97
 
 ## Project Idea
 
