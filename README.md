@@ -1,4 +1,4 @@
-# minishell
+# Minishell
 
 <p align="center">
   <img src="https://github.com/FreddyBicandy50/FreddyBicandy50/blob/main/42_badges/minishelle.png" alt="minishell 42 project badge"/>
